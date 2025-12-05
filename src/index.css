@@ -2,95 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap');
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 0% 15%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 0 79% 45%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 79% 45%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Custom tokens */
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Source Sans 3', system-ui, sans-serif;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 8%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 0 79% 55%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 95%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 79% 55%;
   }
 }
 
@@ -100,6 +78,210 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply relative px-4 py-2 text-foreground/70 transition-colors duration-200 hover:text-foreground;
+  }
+
+  .nav-link-active {
+    @apply text-foreground font-medium;
+  }
+
+  .nav-link-active::after {
+    content: '';
+    @apply absolute bottom-0 left-0 right-0 h-0.5 bg-foreground;
+  }
+
+  .prose-academic {
+    @apply max-w-none;
+  }
+
+  .prose-academic h1 {
+    @apply text-4xl md:text-5xl font-serif font-normal leading-tight mb-8;
+  }
+
+  .prose-academic h2 {
+    @apply text-2xl md:text-3xl font-serif font-normal mb-4 mt-12 first:mt-0;
+  }
+
+  .prose-academic h3 {
+    @apply text-xl font-serif font-normal mb-2 mt-6;
+  }
+
+  .prose-academic p {
+    @apply text-base md:text-lg leading-relaxed mb-4 text-muted-foreground;
+  }
+
+  .prose-academic a {
+    @apply text-accent hover:text-accent/80 transition-colors underline-offset-4 hover:underline;
+  }
+
+  .prose-academic ul {
+    @apply list-disc list-inside mb-4 space-y-2;
+  }
+
+  .prose-academic li {
+    @apply text-muted-foreground;
+  }
+
+  .prose-academic strong {
+    @apply text-accent font-medium;
+  }
+
+  .link-button {
+    @apply inline-flex items-center gap-2 text-foreground font-medium hover:text-accent transition-colors duration-200;
+  }
+
+  .section-divider {
+    @apply w-full h-px bg-border my-8;
+  }
+
+  .team-card {
+    @apply flex flex-col items-center text-center p-4;
+  }
+
+  .team-card img {
+    @apply w-32 h-32 rounded-full object-cover mb-4 grayscale hover:grayscale-0 transition-all duration-300;
+  }
+
+  .publication-item {
+    @apply py-4 border-b border-border last:border-0;
+  }
+
+  .publication-title {
+    @apply font-serif text-lg mb-1;
+  }
+
+  .publication-authors {
+    @apply text-sm text-muted-foreground mb-1;
+  }
+
+  .publication-venue {
+    @apply text-sm text-muted-foreground italic;
+  }
+
+  /* Section page styles - consistent across all pages */
+  .section-page {
+    @apply min-h-[calc(100vh-65px)];
+  }
+
+  .section-container {
+    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-serif font-normal leading-tight mb-8;
+  }
+
+  .section-content {
+    @apply animate-fade-in;
+  }
+
+  /* Lab carousel styles */
+  .carousel-container {
+    @apply relative w-full overflow-hidden;
+  }
+
+  .carousel-slide {
+    @apply w-full flex-shrink-0;
+  }
+
+  .carousel-image {
+    @apply w-full h-[400px] md:h-[500px] object-cover;
+  }
+
+  .carousel-dots {
+    @apply absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2;
+  }
+
+  .carousel-dot {
+    @apply w-2 h-2 rounded-full bg-foreground/30 transition-all duration-300;
+  }
+
+  .carousel-dot-active {
+    @apply bg-foreground w-6;
+  }
+
+  /* Member card styles for lab page */
+  .member-card {
+    @apply text-center;
+  }
+
+  .member-image {
+    @apply w-32 h-32 object-cover rounded mb-3 mx-auto transition-transform duration-300 group-hover:scale-105;
+  }
+
+  .member-name {
+    @apply font-medium text-foreground group-hover:text-accent transition-colors;
+  }
+
+  .member-role {
+    @apply text-sm text-muted-foreground;
+  }
+
+  /* Faculty page styles */
+  .faculty-bio {
+    @apply text-base md:text-lg leading-relaxed text-muted-foreground;
+  }
+
+  .faculty-section {
+    @apply mb-16;
+  }
+
+  .faculty-section-title {
+    @apply text-2xl md:text-3xl font-serif font-normal mb-8 pb-2 border-b border-border;
+  }
+
+  .publication-card {
+    @apply flex gap-6 mb-8;
+  }
+
+  .publication-image {
+    @apply w-36 h-28 object-cover rounded flex-shrink-0;
+  }
+
+  .publication-content {
+    @apply flex-1 min-w-0;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
