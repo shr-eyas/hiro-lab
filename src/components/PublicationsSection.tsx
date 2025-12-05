@@ -42,7 +42,7 @@ export function PublicationsSection() {
                         {pub.title}
                       </h3>
                       <p className="text-sm text-muted-foreground mb-1">{pub.authors}</p>
-                      <p className="text-sm text-muted-foreground italic mb-2">{pub.venue}</p>
+                      <p className="text-sm text-muted-foreground mb-2">{pub.venue}</p>
                       {pub.links.length > 0 && (
                         <div className="flex flex-wrap gap-3">
                           {pub.links.map((link, linkIndex) => (

@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getContent, parseLabContent } from '@/lib/content';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface LabSectionProps {
   onFacultyClick?: () => void;
@@ -9,14 +8,20 @@ interface LabSectionProps {
 export function LabSection({ onFacultyClick }: LabSectionProps) {
   const content = getContent('lab');
   const { sections, carouselImages } = parseLabContent(content);
+
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // Page mount fade-in control
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    // Component becomes visible AFTER it mounts
+    const timer = setTimeout(() => setMounted(true), 10);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Carousel logic
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
-  }, [carouselImages.length]);
-
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
   }, [carouselImages.length]);
 
   useEffect(() => {
@@ -27,119 +32,116 @@ export function LabSection({ onFacultyClick }: LabSectionProps) {
   }, [nextSlide, carouselImages.length]);
 
   return (
-    <section className="section-page">
-      {/* Carousel */}
-      {carouselImages.length > 0 && (
-        <div className="carousel-container relative group">
-          <div 
-            className="flex transition-transform duration-500 ease-out"
-            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-          >
-            {carouselImages.map((img, index) => (
-              <div key={index} className="carousel-slide">
-                <img
-                  src={img}
-                  alt={`Lab photo ${index + 1}`}
-                  className="carousel-image"
-                />
-              </div>
-            ))}
-          </div>
-          
-          {/* Navigation Arrows */}
-          {carouselImages.length > 1 && (
-            <>
-              <button
-                onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                aria-label="Previous slide"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                aria-label="Next slide"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
+    <section
+      className={`
+        min-h-[calc(100vh-65px)] pt-8
+        transition-opacity duration-500
+        ${mounted ? 'opacity-100' : 'opacity-0'}
+      `}
+    >
 
-              {/* Dots */}
-              <div className="carousel-dots">
-                {carouselImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`carousel-dot ${index === currentSlide ? 'carousel-dot-active' : ''}`}
-                    aria-label={`Go to slide ${index + 1}`}
+      {/* ------------------------- */}
+      {/* Carousel */}
+      {/* ------------------------- */}
+      {carouselImages.length > 0 && (
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-lg overflow-hidden shadow-md relative">
+            <div
+              className="flex transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+              {carouselImages.map((img, index) => (
+                <div
+                  key={index}
+                  className="min-w-full aspect-[2/1] bg-black/5"
+                >
+                  <img
+                    src={img}
+                    alt={`Lab photo ${index + 1}`}
+                    className="w-full h-full object-cover"
                   />
-                ))}
-              </div>
-            </>
-          )}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       )}
 
+      {/* ------------------------- */}
       {/* Members Sections */}
-      <div className="section-container">
-        <div className="section-content">
-          {sections.map((section, sectionIndex) => (
-            <div key={section.title} className={sectionIndex < sections.length - 1 ? 'mb-16' : ''}>
-              <h2 className="faculty-section-title">
-                {section.title}
-              </h2>
-              <div className={`grid gap-8 ${
+      {/* ------------------------- */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        {sections.map((section, sectionIndex) => (
+          <div
+            key={section.title}
+            className={sectionIndex < sections.length - 1 ? 'mb-16' : ''}
+          >
+            <h2 className="text-2xl md:text-3xl font-serif font-normal mb-8">
+              {section.title}
+            </h2>
+
+            <div
+              className={`grid gap-10 ${
                 section.title === 'Faculty'
                   ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4'
-                  : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
-              }`}>
-                {section.members.map((member, index) => {
-                  const isInternalLink = member.link.startsWith('/');
-                  const CardContent = (
-                    <>
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="member-image"
-                      />
-                      <p className="member-name">
-                        {member.name}
-                      </p>
-                      <p className="member-role">
-                        {section.title === 'Faculty' ? member.role.split(',')[0] : member.role}
-                      </p>
-                    </>
-                  );
+                  : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center'
+              }`}
+            >
+              {section.members.map((member, index) => {
+                const isInternal = member.link.startsWith('/');
 
-                  if (isInternalLink && onFacultyClick) {
-                    return (
-                      <button
-                        key={index}
-                        onClick={onFacultyClick}
-                        className="member-card group"
-                      >
-                        {CardContent}
-                      </button>
-                    );
-                  }
+                const Card = (
+                  <>
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-28 h-28 object-cover rounded mb-3 mx-auto"
+                    />
+                    <p className="font-medium text-foreground group-hover:text-accent transition-colors">
+                      {member.name}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {section.title === 'Faculty'
+                        ? member.role.split(',')[0]
+                        : member.role}
+                    </p>
+                  </>
+                );
 
+                // INTERNAL → Scroll to top instantly, then navigate
+                if (isInternal && onFacultyClick) {
                   return (
-                    <a
+                    <button
                       key={index}
-                      href={member.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="member-card group"
+                      onClick={() => {
+                        window.scrollTo(0, 0); // no animation
+                        onFacultyClick();
+                      }}
+                      className="group text-center focus:outline-none"
                     >
-                      {CardContent}
-                    </a>
+                      {Card}
+                    </button>
                   );
-                })}
-              </div>
+                }
+
+                // EXTERNAL
+                return (
+                  <a
+                    key={index}
+                    href={member.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group text-center"
+                  >
+                    {Card}
+                  </a>
+                );
+              })}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
+
     </section>
   );
 }

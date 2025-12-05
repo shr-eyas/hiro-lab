@@ -15,3 +15,4 @@ Developing adaptive optimal control methods for uncertain robotic systems with r
 ### Human-Robot Interaction
 image: https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=600&h=400&fit=crop
 Creating safe and intuitive interfaces for human-robot collaboration in manufacturing and service applications.
+

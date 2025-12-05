@@ -1,7 +1,7 @@
 # Human-interactive
 # Robotics Lab
 
-We develop intelligent robotic systems that learn from and collaborate with humans. Our research focuses on skill learning, optimal control, and safe human-robot interaction.
+We are **HiRO @ IISc**. We are interested in developing algorithms that enable intelligent systems to learn from their interactions with the physical world to execute complex tasks and assist people. 
 
 ## Links
 

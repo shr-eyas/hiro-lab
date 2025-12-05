@@ -9,13 +9,13 @@ export function ResearchSection({ onAreaClick }: ResearchSectionProps) {
   const { title, intro, areas } = parseResearchContent(content);
 
   return (
-    <section className="section-page">
-      <div className="section-container">
-        <div className="section-content">
-          <h1 className="section-title">
+    <section className="min-h-[calc(100vh-65px)]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <div className="animate-fade-in">
+          <h1 className="text-4xl md:text-5xl font-serif font-normal leading-tight mb-8">
             {title}
           </h1>
-
+          
           <p className="text-base md:text-lg leading-relaxed mb-16 text-muted-foreground max-w-4xl">
             {intro}
           </p>
