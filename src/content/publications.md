@@ -15,6 +15,7 @@ authors: Ravi Prakash, Laxmidhar Behera
 venue: IEEE Transactions on Control Systems Technology
 area: Optimal Control
 links: [IEEE Xplore](https://ieeexplore.ieee.org/document/10718695)
+djvd: [IEEE Xplore](https://ieeexplore.ieee.org/document/10718695)
 
 ## 2023
 

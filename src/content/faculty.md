@@ -46,6 +46,12 @@ authors: Giovanni Franzese, **Ravi Prakash**, Cosimo Della Santina, Jens Kober
 venue: IEEE Transactions on Robotics (Under Review)
 links: [arXiv](https://arxiv.org/pdf/2404.13458)
 
+### higdiuhg of Task Parameterized Dynamical Systems using Gaussian Process Transportation
+image: https://ravipr009.github.io/projectpics/tro/tro.gif
+authors: Giovanni Franzese, **Ravi Prakash**, Cosimo Della Santina, Jens Kober
+venue: IEEE Transactions on Robotics (Under Review)
+links: [arXiv](https://arxiv.org/pdf/2404.13458)
+
 ### Adaptive Critic Optimal Control of an Uncertain Robot Manipulator with Robotic Applications
 image: https://ravipr009.github.io/projectpics/tcst2/tcst2.gif
 authors: **Ravi Prakash**, Laxmidhar Behera

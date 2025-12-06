@@ -5,6 +5,6 @@ We are **HiRO @ IISc**. We are interested in developing algorithms that enable i
 
 ## Links
 
-- [Lab Website](https://iisc-hiro.github.io/)
-- [IISc Bengaluru](https://iisc.ac.in/)
-- [RBCCPS](https://cps.iisc.ac.in/)
+- [GitHub](https://iisc-hiro.github.io/)
+- [YouTube](https://www.youtube.com/@IIScHiRoLab)
+- [Open Positions](https://cps.iisc.ac.in/)

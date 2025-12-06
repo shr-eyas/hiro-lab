@@ -246,7 +246,7 @@
   }
 
   .publication-image {
-    @apply w-36 h-28 object-cover rounded flex-shrink-0;
+    @apply w-52 h-36 object-cover rounded flex-shrink-0;
   }
 
   .publication-content {

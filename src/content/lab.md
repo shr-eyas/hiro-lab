@@ -57,7 +57,30 @@ image: src/assets/shashwat.jpg
 role: Research Associate
 link: #
 
+
 ## Robots
+
+### UR5e
+image: https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=200&h=200&fit=crop
+role: Universal Robots Manipulator
+link: https://www.universal-robots.com/products/ur5-robot/
+
+### Franka Emika
+image: https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=200&h=200&fit=crop
+role: Collaborative Robot Arm
+link: https://www.franka.de/
+
+### UR5e
+image: https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=200&h=200&fit=crop
+role: Universal Robots Manipulator
+link: https://www.universal-robots.com/products/ur5-robot/
+
+### Franka Emika
+image: https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=200&h=200&fit=crop
+role: Collaborative Robot Arm
+link: https://www.franka.de/
+
+## Hehe
 
 ### UR5e
 image: https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=200&h=200&fit=crop
